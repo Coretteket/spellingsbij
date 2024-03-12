@@ -1,5 +1,5 @@
 <script lang="ts">
-  import './app.css'
+  import '../app.css'
 </script>
 
-<h1>Hello world.</h1>
+<h1 class="font-bold">Hello world.</h1>
