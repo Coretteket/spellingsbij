@@ -36,7 +36,7 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<header class="mx-2 p-2 border-b border-gray-200 flex gap-2 items-center">
+<header class="mx-2 px-2 py-2.5 border-b border-gray-200 flex gap-2 items-center">
   <img src="/logo.png" width={25} height={25} alt="" />
   <h1 class="font-bold text-2xl">Spellingsbij</h1>
 </header>
