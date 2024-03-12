@@ -48,7 +48,7 @@
     {#each word as letter}
       <span
         class={clsx(
-          'text-4xl uppercase font-bold',
+          'text-4xl font-bold uppercase',
           letter === data.letter && 'text-[#f5d03d]',
           !letters.includes(letter) && 'text-neutral-300'
         )}>{letter}</span
