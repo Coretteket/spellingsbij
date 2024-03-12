@@ -39,7 +39,7 @@
 
     & polygon {
       transform-origin: center;
-      transition: scale cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+      transition: scale cubic-bezier(0.4, 0, 0.2, 1) 50ms;
     }
 
     &:active polygon {
