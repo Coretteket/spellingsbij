@@ -1,4 +1,5 @@
 <script lang="ts">
+  import '@fontsource/atkinson-hyperlegible'
   import '../app.css'
 
   import Hive from './hive.svelte'
@@ -19,9 +20,12 @@
   const pangrams = $derived(data.answers.filter((a) => new Set(a).size === 7))
 </script>
 
-<h1 class="font-bold">Hello world.</h1>
+<header class="mx-2 p-2 border-b border-gray-200 flex gap-2 items-center">
+  <img src="/logo.png" width={25} height={25} alt="" />
+  <h1 class="font-bold text-2xl">Spellingsbij</h1>
+</header>
 
-<Hive {letters} class="w-[400px]" />
+<Hive {letters} class="w-[300px] my-4 mx-auto" />
 
 <button onclick={onShuffle}>Shuffle</button>
 

@@ -8,9 +8,9 @@ export const prerender = true
 export function load() {
   const random = createRandom()
   const combi = combis[Math.floor(random() * combis.length)]
-  const [letter, answers, maxScore] = [...combi]
+  const [letter, maxScore, answers] = [...combi]
     .map((l) => [l, ...getValues(combi, l, words)] as const)
-    .sort(([, , a], [, , b]) => Math.abs(a - 200) - Math.abs(b - 200))[0]
+    .sort(([, a], [, b]) => Math.abs(a - 200) - Math.abs(b - 200))[0]
   return { letters: shuffle(combi.split('')), letter, maxScore, answers }
 }
 
@@ -26,5 +26,5 @@ function getValues(combi: string, letter: string, words: string[]) {
     return score + word.length
   }, 0)
 
-  return [answers, maxScore] as const
+  return [maxScore, answers] as const
 }

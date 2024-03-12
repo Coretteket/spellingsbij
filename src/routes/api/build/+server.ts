@@ -1,8 +1,7 @@
 import { CRON_SECRET, BUILD_HOOK } from '$env/static/private'
 
-export function GET({ request }) {
+export function GET({ request, fetch }) {
   const bearer = request.headers.get('Authorization')
-  if (bearer !== `Bearer ${CRON_SECRET}`) return new Response('Unauthorized', { status: 401 })
-  console.log('Triggering build.')
-  return fetch(BUILD_HOOK)
+  if (bearer === `Bearer ${CRON_SECRET}`) return fetch(BUILD_HOOK)
+  return new Response('Unauthorized', { status: 401 })
 }

@@ -6,8 +6,8 @@
 </script>
 
 <div {...attrs}>
-  {#each letters as letter}
-    <Cell {letter} />
+  {#each letters as letter, i}
+    <Cell {letter} yellow={i === 0}/>
   {/each}
 </div>
 
