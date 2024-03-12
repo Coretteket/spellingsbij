@@ -34,10 +34,6 @@
     transform: translate(0, -100%);
   }
 
-  article:nth-child(5) {
-    transform: translate(0, 100%);
-  }
-
   article:nth-child(3) {
     transform: translate(75%, -50%);
   }
@@ -46,11 +42,15 @@
     transform: translate(75%, 50%);
   }
 
-  article:nth-child(7) {
-    transform: translate(-75%, -50%);
+  article:nth-child(5) {
+    transform: translate(0, 100%);
   }
 
   article:nth-child(6) {
     transform: translate(-75%, 50%);
+  }
+
+  article:nth-child(7) {
+    transform: translate(-75%, -50%);
   }
 </style>

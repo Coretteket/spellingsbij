@@ -90334,6 +90334,7 @@ export default [
   'spelletjes',
   'spelling',
   'spellingen',
+  'spellingsbij',
   'spelonk',
   'spelonken',
   'spelpeil',

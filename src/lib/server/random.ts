@@ -1,9 +1,9 @@
 // https://stackoverflow.com/a/47593316
 
-// import { dev } from '$app/environment'
+import { dev } from '$app/environment'
 
 export function createRandom() {
-  // if (dev) return Math.random
+  if (dev) return Math.random
   const seed = getSeed(new Date().toDateString())
   return createRandomWithSeed(seed)
 }
