@@ -1,8 +1,9 @@
 <script lang="ts">
   import '../app.css'
 
-  import { shuffle } from '$lib/util'
   import Hive from './hive.svelte'
+
+  import { shuffle } from '$lib/util'
 
   let { data } = $props()
 
