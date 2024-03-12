@@ -10,7 +10,7 @@ export function load() {
   const combi = combis[Math.floor(random() * combis.length)]
   const [letter, maxScore, answers] = [...combi]
     .map((l) => [l, ...getValues(combi, l, words)] as const)
-    .sort(([, a], [, b]) => Math.abs(a - 200) - Math.abs(b - 200))[0]
+    .sort(([, a], [, b]) => Math.abs(a - 175) - Math.abs(b - 175))[0]
   return { letters: shuffle(combi.split('')), letter, maxScore, answers }
 }
 

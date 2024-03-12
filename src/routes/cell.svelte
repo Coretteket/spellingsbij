@@ -1,12 +1,16 @@
 <script lang="ts">
   import type { HTMLAttributes } from 'svelte/elements'
 
-  type Props = { letter: string; yellow: boolean } & HTMLAttributes<HTMLElement>
+  type Props = {
+    letter: string
+    yellow: boolean
+    onPress: () => void
+  } & HTMLAttributes<HTMLElement>
 
-  let { letter, yellow, ...attrs } = $props<Props>()
+  let { letter, yellow, onPress, ...attrs } = $props<Props>()
 </script>
 
-<div {...attrs}>
+<button {...attrs} onclick={onPress}>
   <svg viewBox="0 0 120 103.92304845413263">
     <polygon
       points="0,51.96152422706631 30,0 90,0 120,51.96152422706631 90,103.92304845413263 30,103.92304845413263"
@@ -16,10 +20,10 @@
     />
     <text dominant-baseline="middle" text-anchor="middle" x="50%" y="52.5%">{letter}</text>
   </svg>
-</div>
+</button>
 
 <style>
-  div {
+  button {
     position: absolute;
     user-select: none;
     width: 40%;
