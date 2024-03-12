@@ -24,3 +24,5 @@ export function load() {
     .sort(([, , a], [, , b]) => Math.abs(a - 200) - Math.abs(b - 200))[0]
   return { letters: shuffle(combi.split('')), letter, maxScore, answers }
 }
+
+export const prerender = true
