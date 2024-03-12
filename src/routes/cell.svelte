@@ -39,11 +39,11 @@
 
     & polygon {
       transform-origin: center;
-      transition: scale cubic-bezier(0.4, 0, 0.2, 1) 50ms;
+      transition: scale cubic-bezier(0.4, 0, 0.2, 1) 100ms;
     }
 
     &:active polygon {
-      scale: 0.9;
+      scale: 0.95;
     }
 
     &:nth-child(2) {
