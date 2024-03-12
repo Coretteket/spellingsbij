@@ -1,7 +1,7 @@
-import { createRandom } from '$lib/random'
+import { createRandom } from '$lib/server/random'
 import { shuffle } from '$lib/util'
-import combis from '../lib/server/combis'
-import words from '../lib/server/words'
+import combis from '$lib/server/combis'
+import words from '$lib/server/words'
 
 export const prerender = true
 
