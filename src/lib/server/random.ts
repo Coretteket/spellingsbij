@@ -4,7 +4,8 @@ import { dev } from '$app/environment'
 
 export function createRandom() {
   if (dev) return Math.random
-  const seed = getSeed(new Date().toDateString())
+  const df = Intl.DateTimeFormat('en', { timeZone: "Europe/Amsterdam" })
+  const seed = getSeed(df.format(new Date()))
   return createRandomWithSeed(seed)
 }
 
