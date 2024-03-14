@@ -20,6 +20,10 @@
     otherLetters = shuffle(otherLetters)
   }
 
+  function onDelete() {
+    word = word.slice(0, -1)
+  }
+
   function onKeydown(event: KeyboardEvent) {
     if (event.key === 'Backspace') {
       word = word.slice(0, -1)
@@ -36,7 +40,7 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<header class="mx-2 flex items-center gap-2 border-b border-gray-200 px-2 py-2.5">
+<header class="flex items-center gap-2 border-b border-gray-200 px-4 py-2.5">
   <img src="/logo.png" width={25} height={25} alt="" />
   <h1 class="text-2xl font-bold">Spellingsbij</h1>
 </header>
@@ -44,7 +48,7 @@
 <div class="mx-6 my-4 rounded-md border border-gray-200 px-4 py-2 text-gray-500">Woorden</div>
 
 <div class="mx-auto my-4 flex h-10 w-max items-center">
-  <div>
+  <div class="mr-1">
     {#each word as letter}
       <span
         class={clsx(
@@ -55,14 +59,16 @@
       >
     {/each}
   </div>
-  <div class="animate-blink -mr-1 ml-0.5 h-full w-[3px] rounded bg-[#f5d03d]" />
+  <div class="animate-blink h-full w-[3px] rounded bg-[#f5d03d]" />
 </div>
 
 <Hive {letters} {onPress} class="mx-auto my-4 w-[350px]" />
 
-<button onclick={onShuffle}>Shuffle</button>
-
-{data.maxScore}
+<div class="mx-auto my-8 flex w-fit gap-2">
+  <button onclick={onDelete} class="rounded-full border px-4 py-2">Wis</button>
+  <button onclick={onShuffle} class="rounded-full border px-4 py-2">&#x1f500;</button>
+  <button class="rounded-full border px-4 py-2">Oké</button>
+</div>
 
 <style>
   @keyframes blink {
