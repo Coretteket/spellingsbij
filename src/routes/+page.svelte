@@ -36,14 +36,14 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<header class="mx-2 px-2 py-2.5 border-b border-gray-200 flex gap-2 items-center">
+<header class="mx-2 flex items-center gap-2 border-b border-gray-200 px-2 py-2.5">
   <img src="/logo.png" width={25} height={25} alt="" />
-  <h1 class="font-bold text-2xl">Spellingsbij</h1>
+  <h1 class="text-2xl font-bold">Spellingsbij</h1>
 </header>
 
-<div class="mx-6 border border-gray-200 text-gray-500 px-4 py-2 my-4 rounded-md">Woorden</div>
+<div class="mx-6 my-4 rounded-md border border-gray-200 px-4 py-2 text-gray-500">Woorden</div>
 
-<div class="my-4 h-10 mx-auto w-max flex items-center">
+<div class="mx-auto my-4 flex h-10 w-max items-center">
   <div>
     {#each word as letter}
       <span
@@ -55,10 +55,10 @@
       >
     {/each}
   </div>
-  <div class="bg-[#f5d03d] ml-0.5 -mr-1 w-[3px] h-full rounded animate-blink" />
+  <div class="animate-blink -mr-1 ml-0.5 h-full w-[3px] rounded bg-[#f5d03d]" />
 </div>
 
-<Hive {letters} {onPress} class="w-[350px] my-4 mx-auto" />
+<Hive {letters} {onPress} class="mx-auto my-4 w-[350px]" />
 
 <button onclick={onShuffle}>Shuffle</button>
 

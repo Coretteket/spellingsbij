@@ -2,7 +2,10 @@
   import type { HTMLAttributes } from 'svelte/elements'
   import Cell from './cell.svelte'
 
-  type Props = { letters: string[]; onPress: (letter: string) => void } & HTMLAttributes<HTMLElement>
+  type Props = {
+    letters: string[]
+    onPress: (letter: string) => void
+  } & HTMLAttributes<HTMLElement>
 
   let { letters, onPress, ...attrs } = $props<Props>()
 </script>
