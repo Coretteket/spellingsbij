@@ -21,6 +21,21 @@
     }, 0)
   )
 
+  const ranks = [0, 3.2, 7.2, 12.2, 23.2, 35.2, 56.2, 72.2, 100]
+  const rankNames = [
+    'Beginner',
+    'Starter',
+    'Op weg',
+    'Netjes',
+    'Goed',
+    'Mooi',
+    'Geweldig',
+    'Fantastisch',
+    'Geniaal'
+  ] as const
+
+  const rank = $derived(rankNames[ranks.findLastIndex((r) => score / data.maxScore >= r / 100)])
+
   let otherLetters = $state(data.letters.filter((l) => l !== data.letter))
   $effect(() => void (otherLetters = data.letters.filter((l) => l !== data.letter)))
 
@@ -37,6 +52,7 @@
   function onKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') onSubmit()
     if (event.key === 'Backspace') word = word.slice(0, -1)
+    if (event.shiftKey || event.ctrlKey || event.altKey || event.metaKey) return
     if (event.key.match(/^[a-z]$/i)) word += event.key
   }
 
@@ -61,11 +77,11 @@
   <h1 class="text-2xl font-bold">Spellingsbij</h1>
 </header>
 
-<b class="mx-6 my-4 block">{score}</b>
+<b class="mx-6 my-4 block">{score} / {data.maxScore} ({rank})</b>
 
-<div class="mx-6 my-4 flex gap-2 rounded-md border border-gray-200 px-4 py-2">
+<div class="mx-6 my-4 line-clamp-1 flex gap-2 rounded-md border border-gray-200 px-4 py-2">
   {#each foundWords as word}
-    <span class="capitalize">{word}</span>
+    <span class="capitalize">{word.replace('ij', 'ĳ')}</span>
   {/each}
   {#if foundWords.length < 1}
     <span class="text-gray-500">Geen woorden gevonden</span>
@@ -94,6 +110,10 @@
   <button onclick={onShuffle} class="rounded-full border px-4 py-2">&#x1f500;</button>
   <button onclick={onSubmit} class="rounded-full border px-4 py-2">Oké</button>
 </div>
+
+<pre>
+  {JSON.stringify(data.answers, null, 2)}
+</pre>
 
 <style>
   @keyframes blink {
