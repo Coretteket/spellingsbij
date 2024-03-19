@@ -1,7 +1,6 @@
 import { CRON_SECRET, BUILD_HOOK } from '$env/static/private'
 
-export function GET({ request, fetch }) {
-  const bearer = request.headers.get('Authorization')
-  if (bearer === `Bearer ${CRON_SECRET}`) return fetch(BUILD_HOOK)
-  return new Response('Unauthorized', { status: 401 })
-}
+export const GET = ({ request, fetch }) =>
+  request.headers.get('Authorization') === `Bearer ${CRON_SECRET}`
+    ? fetch(BUILD_HOOK)
+    : new Response('Unauthorized', { status: 401 })

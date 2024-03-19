@@ -4,6 +4,7 @@
 
   import Hive from './hive.svelte'
 
+  import { getScore } from '$lib/score'
   import { shuffle } from '$lib/util'
   import { clsx } from 'clsx'
 
@@ -13,12 +14,7 @@
   let word = $state('')
 
   const score = $derived(
-    foundWords.reduce((score, word) => {
-      const pangram = data.letters.every((l) => word.includes(l))
-      if (pangram) return score + word.length + 7
-      if (word.length === 4) return score + 1
-      return score + word.length
-    }, 0)
+    foundWords.reduce((score, word) => score + getScore(data.letters, word), 0)
   )
 
   const ranks = [0, 3.2, 7.2, 12.2, 23.2, 35.2, 56.2, 72.2, 100]
@@ -110,10 +106,6 @@
   <button onclick={onShuffle} class="rounded-full border px-4 py-2">&#x1f500;</button>
   <button onclick={onSubmit} class="rounded-full border px-4 py-2">Oké</button>
 </div>
-
-<pre>
-  {JSON.stringify(data.answers, null, 2)}
-</pre>
 
 <style>
   @keyframes blink {

@@ -2,14 +2,13 @@
 
 import { dev } from '$app/environment'
 
-export function createRandom() {
-  if (dev) return Math.random
-  const df = Intl.DateTimeFormat('en', { timeZone: "Europe/Amsterdam" })
-  const seed = getSeed(df.format(new Date()))
-  return createRandomWithSeed(seed)
+export function createDailyRandom() {
+  // if (dev) return Math.random
+  const df = Intl.DateTimeFormat('en', { timeZone: 'Europe/Amsterdam' })
+  return createSeededRandom(df.format(new Date()))
 }
 
-function getSeed(str: string) {
+function createSeed(str: string) {
   let h1 = 1779033703,
     h2 = 3144134277,
     h3 = 1013904242,
@@ -29,8 +28,8 @@ function getSeed(str: string) {
   return [h1 >>> 0, h2 >>> 0, h3 >>> 0, h4 >>> 0] as const
 }
 
-function createRandomWithSeed(seed: ReturnType<typeof getSeed>) {
-  let [a, b, c, d] = seed
+function createSeededRandom(input: string) {
+  let [a, b, c, d] = createSeed(input)
   return function () {
     a |= 0
     b |= 0

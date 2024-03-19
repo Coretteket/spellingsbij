@@ -7,7 +7,7 @@
     onPress: (letter: string) => void
   } & HTMLAttributes<HTMLElement>
 
-  let { letters, onPress, ...attrs } = $props<Props>()
+  let { letters, onPress, ...attrs }: Props = $props()
 </script>
 
 <div {...attrs}>
