@@ -3,7 +3,7 @@
 import { dev } from '$app/environment'
 
 export function createDailyRandom() {
-  // if (dev) return Math.random
+  if (dev) return Math.random
   const df = Intl.DateTimeFormat('en', { timeZone: 'Europe/Amsterdam' })
   return createSeededRandom(df.format(new Date()))
 }

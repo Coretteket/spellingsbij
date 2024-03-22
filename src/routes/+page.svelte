@@ -1,8 +1,6 @@
 <script lang="ts">
-  import '@fontsource/atkinson-hyperlegible'
-  import '../app.css'
-
   import Hive from './hive.svelte'
+  import Progress from './progress.svelte'
 
   import { getScore } from '$lib/score'
   import { shuffle } from '$lib/util'
@@ -16,21 +14,6 @@
   const score = $derived(
     foundWords.reduce((score, word) => score + getScore(data.letters, word), 0)
   )
-
-  const ranks = [0, 3.2, 7.2, 12.2, 23.2, 35.2, 56.2, 72.2, 100]
-  const rankNames = [
-    'Beginner',
-    'Starter',
-    'Op weg',
-    'Netjes',
-    'Goed',
-    'Mooi',
-    'Geweldig',
-    'Fantastisch',
-    'Geniaal'
-  ] as const
-
-  const rank = $derived(rankNames[ranks.findLastIndex((r) => score / data.maxScore >= r / 100)])
 
   let otherLetters = $state(data.letters.filter((l) => l !== data.letter))
   $effect(() => void (otherLetters = data.letters.filter((l) => l !== data.letter)))
@@ -68,14 +51,9 @@
 
 <svelte:window onkeydown={onKeydown} />
 
-<header class="flex items-center gap-2 border-b border-gray-200 px-4 py-2.5">
-  <img src="/logo.png" width={25} height={25} alt="" />
-  <h1 class="text-2xl font-bold">Spellingsbij</h1>
-</header>
+<Progress {score} maxScore={data.maxScore} />
 
-<b class="mx-6 my-4 block">{score} / {data.maxScore} ({rank})</b>
-
-<div class="mx-6 my-4 line-clamp-1 flex gap-2 rounded-md border border-gray-200 px-4 py-2">
+<div class="mx-6 my-6 line-clamp-1 flex gap-2 rounded-md border border-gray-200 px-4 py-2">
   {#each foundWords as word}
     <span class="capitalize">{word.replace('ij', 'ĳ')}</span>
   {/each}
@@ -84,7 +62,7 @@
   {/if}
 </div>
 
-<div class="mx-auto my-4 flex h-10 w-max items-center">
+<div class="mx-auto my-6 flex h-10 w-max items-center">
   <div class="mr-1">
     {#each word as letter}
       <span
@@ -102,10 +80,14 @@
 <Hive {letters} {onPress} class="mx-auto my-4 w-[350px]" />
 
 <div class="mx-auto my-8 flex w-fit gap-2">
-  <button onclick={onDelete} class="rounded-full border px-4 py-2">Wis</button>
-  <button onclick={onShuffle} class="rounded-full border px-4 py-2">&#x1f500;</button>
-  <button onclick={onSubmit} class="rounded-full border px-4 py-2">Oké</button>
+  <button onclick={onDelete} class="rounded-full border px-4 py-2">Wissen</button>
+  <button onclick={onShuffle} class="rounded-full border px-4 py-2">Schudden</button>
+  <button onclick={onSubmit} class="rounded-full border px-4 py-2">Indienen</button>
 </div>
+
+<pre>
+  {JSON.stringify(data.answers, null, 2)}
+</pre>
 
 <style>
   @keyframes blink {
